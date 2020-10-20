@@ -1,5 +1,5 @@
 
-groupWidgetsStyles = """
+group_widgets_styles = """
             QGroupBox {
                 border-radius: 0.5em;
                 border: 0.1em solid #444;
@@ -12,7 +12,7 @@ groupWidgetsStyles = """
             }
         """
 
-storedDirDropDownStyles = """
+stored_dir_dropdown_styles = """
             QComboBox {
                 background-color: #333;
                 color: white;

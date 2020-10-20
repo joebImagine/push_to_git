@@ -18,21 +18,21 @@ class Widget(QWidget):
         self.initUI()
 
     def initUI(self):
-        self.fileTitle = QLabel('File Location:')
-        self.fileLocationEdit = QLineEdit()
-        self.fileLocationEdit.setStyleSheet("background: #2C2B2B;")
-        self.openFileBtn = QPushButton("Open")
+        self.file_title = QLabel('File Location:')
+        self.file_location_edit = QLineEdit()
+        self.file_location_edit.setStyleSheet("background: #2C2B2B;")
+        self.open_file_btn = QPushButton("Open")
 
-        UILayout = Layout()
+        UI_Layout = Layout()
 
         # Initialize main layout and add children
         self.grid = QGridLayout()
-        self.grid.addWidget(self.fileTitle, 0, 0)
-        self.grid.addWidget(self.fileLocationEdit, 0, 1)
-        self.grid.addWidget(self.openFileBtn, 0, 2)
-        self.grid.addLayout(UILayout.storedLocationLayout(), 1, 0, 1, 3)
+        self.grid.addWidget(self.file_title, 0, 0)
+        self.grid.addWidget(self.file_location_edit, 0, 1)
+        self.grid.addWidget(self.open_file_btn, 0, 2)
+        self.grid.addLayout(UI_Layout.stored_location_layout(), 1, 0, 1, 3)
         # self.grid.addWidget(self.storedDirDropDown, 1, 1)
-        self.grid.addWidget(UILayout.pushToGroupLayout(), 2, 0, 1, 3)
+        self.grid.addWidget(UI_Layout.push_to_group_layout(), 2, 0, 1, 3)
         # Set the stretch of the rows
         self.grid.setRowStretch(1, 1)
         self.grid.setRowStretch(2, 1)

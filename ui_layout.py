@@ -3,16 +3,16 @@ from PySide2.QtWidgets import (
     QApplication, QLabel, QMainWindow, QTableWidget, QVBoxLayout,
     QWidget, QGridLayout, QPushButton, QGroupBox, QComboBox
 )
-from stylesheet import storedDirDropDownStyles
+from stylesheet import stored_dir_dropdown_styles, group_widgets_styles
 
 
 class Layout(QWidget):
 
-    def storedLocationLayout(self):
+    def stored_location_layout(self):
 
         self.storedDirectoriesTitle = QLabel("Pick a stored location: ")
         self.storedDirDropDown = QComboBox()
-        self.storedDirDropDown.setStyleSheet(storedDirDropDownStyles)
+        self.storedDirDropDown.setStyleSheet(stored_dir_dropdown_styles)
         self.storedDirectoriesLayout = QGridLayout()
         self.storedDirectoriesLayout.addWidget(self.storedDirectoriesTitle, 0, 0)
         self.storedDirectoriesLayout.addWidget(self.storedDirDropDown, 0, 1)
@@ -22,10 +22,10 @@ class Layout(QWidget):
         return self.storedDirectoriesLayout
 
 
-    def pushToGroupLayout(self):
+    def push_to_group_layout(self):
 
         self.groupWidgets = QGroupBox("Push to: ")
-        self.groupWidgets.setStyleSheet(groupWidgetsStyles)
+        self.groupWidgets.setStyleSheet(group_widgets_styles)
         self.vBox1 = QVBoxLayout()
         self.vBox1.setAlignment(Qt.AlignHCenter | Qt.AlignTop)
         self.vBox1.setContentsMargins(0, 24, 0, 24)
