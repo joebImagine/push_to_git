@@ -51,7 +51,7 @@ if __name__ == "__main__":
 
     widget = Widget()
     window = MainWindow(widget)
-    window.setFixedSize(500, 600)
+    window.setFixedSize(700, 500)
     window.show()
 
     sys.exit(app.exec_())
