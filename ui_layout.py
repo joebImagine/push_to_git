@@ -3,6 +3,7 @@ from PySide2.QtWidgets import (
     QApplication, QLabel, QMainWindow, QTableWidget, QVBoxLayout,
     QWidget, QGridLayout, QPushButton, QGroupBox, QComboBox, QLineEdit
 )
+from PySide2.QtGui import QCursor
 from stylesheet import stored_dir_dropdown_styles, group_widgets_styles, button_styles
 
 
@@ -12,6 +13,7 @@ class Layout(QWidget):
 
         self.stored_directories_title = QLabel("Pick a stored location: ")
         self.stored_dir_dropdown = QComboBox()
+        self.stored_dir_dropdown.setCursor(QCursor(Qt.PointingHandCursor))
         self.stored_dir_dropdown.setStyleSheet(stored_dir_dropdown_styles)
         self.stored_dirs_layout = QGridLayout()
         self.stored_dirs_layout.addWidget(self.stored_directories_title, 0, 0)
@@ -33,6 +35,8 @@ class Layout(QWidget):
         self.group_push_to.setLayout(self.vBox1)
         self.staging_btn = QPushButton("Staging")
         self.prod_btn = QPushButton("Production")
+        self.staging_btn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.prod_btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.staging_btn.setStyleSheet(button_styles)
         self.prod_btn.setStyleSheet(button_styles)
         # self.staging_btn.setFixedSize(150, 40)
@@ -50,6 +54,8 @@ class Layout(QWidget):
         self.file_location_edit.setStyleSheet("background: #2C2B2B;")
         self.open_file_btn = QPushButton("Open")
         self.store_btn = QPushButton("Store")
+        self.open_file_btn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.store_btn.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.file_location_layout = QGridLayout()
         self.file_location_layout.setColumnStretch(1, 2)
@@ -75,6 +81,10 @@ class Layout(QWidget):
         self.main_btn.setStyleSheet(button_styles)
         self.staging_btn.setStyleSheet(button_styles)
         self.prod_btn.setStyleSheet(button_styles)
+        self.main_btn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.master_btn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.staging_btn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.prod_btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.grid1.setContentsMargins(16, 24, 16, 24)
         self.grid1.addWidget(self.master_btn, 0, 0)
         self.grid1.addWidget(self.main_btn, 0, 1)
