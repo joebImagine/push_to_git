@@ -23,21 +23,14 @@ class Widget(QWidget):
         self.fileTitle = QLabel('File Location:')
         self.fileLocationEdit = QLineEdit()
         self.openFileBtn = QPushButton("Open")
-        self.storedDirectoriesTitle = QLabel("Pick a stored location: ")
-        self.storedDirectories = QComboBox()
-        self.storedDirectoriesLayout = QGridLayout()
-        self.storedDirectoriesLayout.addWidget(self.storedDirectoriesTitle, 0, 0)
-        self.storedDirectoriesLayout.addWidget(self.storedDirectories, 0, 1)
-        self.storedDirectoriesLayout.setColumnStretch(1, 2)
-        self.storedDirectoriesLayout.setContentsMargins(0, 16, 0, 32)
 
         # Initialize main layout and add children
         self.grid = QGridLayout()
         self.grid.addWidget(self.fileTitle, 0, 0)
         self.grid.addWidget(self.fileLocationEdit, 0, 1)
         self.grid.addWidget(self.openFileBtn, 0, 2)
-        self.grid.addLayout(self.storedDirectoriesLayout, 1, 0, 1, 4)
-        # self.grid.addWidget(self.storedDirectories, 1, 1)
+        self.grid.addLayout(self.storedLocationLayout(), 1, 0, 1, 4)
+        # self.grid.addWidget(self.storedDirDropDown, 1, 1)
         self.grid.addWidget(self.pushToGroupLayout(), 2, 0, 1, 4)
         # Set the stretch of the rows
         self.grid.setRowStretch(1, 1)
@@ -46,6 +39,17 @@ class Widget(QWidget):
         self.grid.setContentsMargins(32, 32, 32, 32)
         # self.grid.addWidget(my_utils.Color('red'))
         self.setLayout(self.grid)
+
+    def storedLocationLayout(self):
+        self.storedDirectoriesTitle = QLabel("Pick a stored location: ")
+        self.storedDirDropDown = QComboBox()
+        self.storedDirectoriesLayout = QGridLayout()
+        self.storedDirectoriesLayout.addWidget(self.storedDirectoriesTitle, 0, 0)
+        self.storedDirectoriesLayout.addWidget(self.storedDirDropDown, 0, 1)
+        self.storedDirectoriesLayout.setColumnStretch(1, 2)
+        self.storedDirectoriesLayout.setContentsMargins(0, 16, 0, 32)
+
+        return self.storedDirectoriesLayout
 
     def pushToGroupLayout(self):
         self.groupWidgets = QGroupBox("Push to: ")
