@@ -74,7 +74,7 @@ class Widget(QWidget):
         """)
         self.vBox1 = QVBoxLayout()
         self.vBox1.setAlignment(Qt.AlignHCenter | Qt.AlignTop)
-        self.vBox1.setContentsMargins(0, 24, 0, 0)
+        self.vBox1.setContentsMargins(0, 24, 0, 24)
         self.groupWidgets.setLayout(self.vBox1)
         self.stagingBtn = QPushButton("Staging")
         self.prodBtn = QPushButton("Production")
