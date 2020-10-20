@@ -22,6 +22,7 @@ class Widget(QWidget):
     def initUI(self):
         self.fileTitle = QLabel('File Location:')
         self.fileLocationEdit = QLineEdit()
+        self.fileLocationEdit.setStyleSheet("background: #2C2B2B;")
         self.openFileBtn = QPushButton("Open")
 
         # Initialize main layout and add children
@@ -29,9 +30,9 @@ class Widget(QWidget):
         self.grid.addWidget(self.fileTitle, 0, 0)
         self.grid.addWidget(self.fileLocationEdit, 0, 1)
         self.grid.addWidget(self.openFileBtn, 0, 2)
-        self.grid.addLayout(self.storedLocationLayout(), 1, 0, 1, 4)
+        self.grid.addLayout(self.storedLocationLayout(), 1, 0, 1, 3)
         # self.grid.addWidget(self.storedDirDropDown, 1, 1)
-        self.grid.addWidget(self.pushToGroupLayout(), 2, 0, 1, 4)
+        self.grid.addWidget(self.pushToGroupLayout(), 2, 0, 1, 3)
         # Set the stretch of the rows
         self.grid.setRowStretch(1, 1)
         self.grid.setRowStretch(2, 1)
@@ -43,6 +44,12 @@ class Widget(QWidget):
     def storedLocationLayout(self):
         self.storedDirectoriesTitle = QLabel("Pick a stored location: ")
         self.storedDirDropDown = QComboBox()
+        self.storedDirDropDown.setStyleSheet("""
+            QComboBox {
+                background-color: #333;
+                color: white;
+            }
+        """)
         self.storedDirectoriesLayout = QGridLayout()
         self.storedDirectoriesLayout.addWidget(self.storedDirectoriesTitle, 0, 0)
         self.storedDirectoriesLayout.addWidget(self.storedDirDropDown, 0, 1)
@@ -53,11 +60,21 @@ class Widget(QWidget):
 
     def pushToGroupLayout(self):
         self.groupWidgets = QGroupBox("Push to: ")
-        self.groupWidgets.setStyleSheet(
-            "QGroupBox:title {font-size:14px; margin: 0;}"
-        )
+        self.groupWidgets.setStyleSheet("""
+            QGroupBox {
+                border-radius: 0.5em;
+                border: 0.1em solid #444;
+                margin-top: 2em;
+                background-color: #2C2B2B;
+                font-size: 1em;
+            }
+            QGroupBox:title {
+                subcontrol-origin: margin;
+            }
+        """)
         self.vBox1 = QVBoxLayout()
         self.vBox1.setAlignment(Qt.AlignHCenter | Qt.AlignTop)
+        self.vBox1.setContentsMargins(0, 24, 0, 0)
         self.groupWidgets.setLayout(self.vBox1)
         self.stagingBtn = QPushButton("Staging")
         self.prodBtn = QPushButton("Production")
@@ -79,6 +96,7 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    app.setStyle('Fusion') # Set the app style.
 
     widget = Widget()
     window = MainWindow(widget)
