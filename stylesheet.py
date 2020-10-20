@@ -22,4 +22,6 @@ stored_dir_dropdown_styles = """
 button_styles = """
             height: 2em;
             margin-bottom: 1em;
-"""
+            margin-right: 0.5em;
+            margin-left: 0.5em;
+        """
