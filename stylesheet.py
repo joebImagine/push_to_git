@@ -18,3 +18,8 @@ stored_dir_dropdown_styles = """
                 color: white;
             }
         """
+
+button_styles = """
+            height: 2em;
+            margin-bottom: 1em;
+"""

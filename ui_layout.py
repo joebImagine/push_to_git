@@ -3,7 +3,7 @@ from PySide2.QtWidgets import (
     QApplication, QLabel, QMainWindow, QTableWidget, QVBoxLayout,
     QWidget, QGridLayout, QPushButton, QGroupBox, QComboBox, QLineEdit
 )
-from stylesheet import stored_dir_dropdown_styles, group_widgets_styles
+from stylesheet import stored_dir_dropdown_styles, group_widgets_styles, button_styles
 
 
 class Layout(QWidget):
@@ -27,17 +27,21 @@ class Layout(QWidget):
         self.group_push_to = QGroupBox("Push to: ")
         self.group_push_to.setStyleSheet(group_widgets_styles)
         self.vBox1 = QVBoxLayout()
-        self.vBox1.setAlignment(Qt.AlignHCenter | Qt.AlignTop)
+        # self.vBox1.setAlignment(Qt.AlignHCenter | Qt.AlignTop)
+        self.vBox1.setAlignment(Qt.AlignTop)
         self.vBox1.setContentsMargins(16, 24, 16, 24)
         self.group_push_to.setLayout(self.vBox1)
         self.staging_btn = QPushButton("Staging")
         self.prod_btn = QPushButton("Production")
+        self.staging_btn.setStyleSheet(button_styles)
+        self.prod_btn.setStyleSheet(button_styles)
         # self.staging_btn.setFixedSize(150, 40)
         # self.prod_btn.setFixedSize(150, 40)
         self.vBox1.addWidget(self.staging_btn)
         self.vBox1.addWidget(self.prod_btn)
 
         return self.group_push_to
+
 
     def file_location_layout(self):
 
@@ -55,11 +59,26 @@ class Layout(QWidget):
 
         return self.file_location_layout
 
+
     def fetch_origin_layout(self):
 
         self.group_fetch_origin = QGroupBox("Fetch origin: ")
         self.group_fetch_origin.setStyleSheet(group_widgets_styles)
-        self.vBox1 = QVBoxLayout()
-        self.group_fetch_origin.setLayout(self.vBox1)
+        self.grid1 = QGridLayout()
+        self.master_btn = QPushButton("Master")
+        self.main_btn = QPushButton("Main")
+        self.staging_btn = QPushButton("Staging")
+        self.prod_btn = QPushButton("Prod")
+        self.master_btn.setStyleSheet(button_styles)
+        self.main_btn.setStyleSheet(button_styles)
+        self.staging_btn.setStyleSheet(button_styles)
+        self.prod_btn.setStyleSheet(button_styles)
+        self.grid1.setContentsMargins(16, 24, 16, 24)
+        self.grid1.addWidget(self.master_btn, 0, 0)
+        self.grid1.addWidget(self.main_btn, 0, 1)
+        self.grid1.addWidget(self.staging_btn, 1, 0, 1, 2)
+        self.grid1.addWidget(self.prod_btn, 2, 0, 1, 2)
+        self.grid1.setAlignment(Qt.AlignTop)
+        self.group_fetch_origin.setLayout(self.grid1)
 
         return self.group_fetch_origin
