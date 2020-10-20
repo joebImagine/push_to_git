@@ -49,6 +49,7 @@ class Layout(QWidget):
         self.file_location_edit = QLineEdit()
         self.file_location_edit.setStyleSheet("background: #2C2B2B;")
         self.open_file_btn = QPushButton("Open")
+        self.store_btn = QPushButton("Store")
 
         self.file_location_layout = QGridLayout()
         self.file_location_layout.setColumnStretch(1, 2)
@@ -56,6 +57,7 @@ class Layout(QWidget):
         self.file_location_layout.addWidget(self.file_title, 0, 0, 1, 1)
         self.file_location_layout.addWidget(self.file_location_edit, 0, 1, 1, 2)
         self.file_location_layout.addWidget(self.open_file_btn, 0, 3, 1, 1)
+        self.file_location_layout.addWidget(self.store_btn, 0, 4, 1, 1)
 
         return self.file_location_layout
 
