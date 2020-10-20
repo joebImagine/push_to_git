@@ -49,7 +49,7 @@ class Layout(QWidget):
 
     def file_location_layout(self):
 
-        self.file_title = QLabel('File Location:')
+        self.file_title = QLabel('Repo Location:')
         self.file_location_edit = QLineEdit()
         self.file_location_edit.setStyleSheet("background: #2C2B2B;")
         self.open_file_btn = QPushButton("Open")
