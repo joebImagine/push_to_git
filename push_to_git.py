@@ -5,11 +5,11 @@ from PySide2.QtCore import Qt, Slot
 from PySide2.QtGui import QPainter, QColor, QPalette
 from PySide2.QtWidgets import (
     QApplication, QLabel, QMainWindow, QWidget, QGridLayout,
-    QLineEdit, QPushButton, QHBoxLayout, QComboBox
+    QLineEdit, QPushButton, QHBoxLayout, QComboBox, QAction, QFileDialog
 )
 from my_utils import Color
 from ui_layout import Layout
-
+from pathlib import Path
 
 class Widget(QWidget):
     def __init__(self):
@@ -42,7 +42,39 @@ class MainWindow(QMainWindow):
     def __init__(self, widget):
         QMainWindow.__init__(self)
         self.setWindowTitle("Push to git")
+
+        # Init the Menu
+        self.menu = self.menuBar()
+        self.file_menu = self.menu.addMenu("File")
+
+        # Exit QAction
+        exit_action = QAction(" Exit", self)
+        open_file = QAction("Open", self)
+        exit_action.setShortcut("Ctrl+W")
+        open_file.setShortcut("Ctrl+O")
+        open_file.triggered.connect(self.showDialog)
+        exit_action.triggered.connect(self.exit_app)
+
+        self.file_menu.addAction(open_file)
+        self.file_menu.addAction(exit_action)
         self.setCentralWidget(widget)
+
+    @Slot()
+    def exit_app(self, checked):
+        QApplication.quit()
+
+    @Slot()
+    def showDialog(self):
+
+        home_dir = str(Path.home())
+        fname = QFileDialog.getOpenFileName(self, 'Open file', home_dir)
+
+        if fname[0]:
+            f = open(fname[0], 'r')
+
+            with f:
+                data = f.read()
+                self.textEdit.setText(data)
 
 
 if __name__ == "__main__":
