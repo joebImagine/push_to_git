@@ -5,9 +5,9 @@ from PySide2.QtWidgets import (
 )
 from PySide2.QtGui import QCursor
 from stylesheet import stored_dir_dropdown_styles, group_widgets_styles, button_styles
+from push_to_git_slots import PushToGitSlots
 
-
-class Layout(QWidget):
+class Layout(PushToGitSlots):
 
     def stored_location_layout(self):
         self.stored_directories_title = QLabel("Pick a stored location: ")
