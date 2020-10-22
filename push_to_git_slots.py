@@ -4,7 +4,7 @@ from PySide2.QtWidgets import (
 )
 from pathlib import Path
 
-class PushToGitSlots(QWidget):
+class Slots(QWidget):
     @Slot()
     def exit_app(self, checked):
         QApplication.quit()
