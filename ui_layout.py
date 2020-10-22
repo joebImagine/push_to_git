@@ -10,7 +10,6 @@ from stylesheet import stored_dir_dropdown_styles, group_widgets_styles, button_
 class Layout(QWidget):
 
     def stored_location_layout(self):
-
         self.stored_directories_title = QLabel("Pick a stored location: ")
         self.stored_dir_dropdown = QComboBox()
         self.stored_dir_dropdown.setCursor(QCursor(Qt.PointingHandCursor))
@@ -23,9 +22,7 @@ class Layout(QWidget):
 
         return self.stored_dirs_layout
 
-
     def push_to_group_layout(self):
-
         self.group_push_to = QGroupBox("Push to: ")
         self.group_push_to.setStyleSheet(group_widgets_styles)
         self.vBox1 = QVBoxLayout()
@@ -46,9 +43,7 @@ class Layout(QWidget):
 
         return self.group_push_to
 
-
     def file_location_layout(self):
-
         self.file_title = QLabel('Repo Location:')
         self.file_location_edit = QLineEdit()
         self.file_location_edit.setStyleSheet("background: #2C2B2B;")
@@ -61,15 +56,14 @@ class Layout(QWidget):
         self.file_location_layout.setColumnStretch(1, 2)
 
         self.file_location_layout.addWidget(self.file_title, 0, 0, 1, 1)
-        self.file_location_layout.addWidget(self.file_location_edit, 0, 1, 1, 2)
+        self.file_location_layout.addWidget(
+            self.file_location_edit, 0, 1, 1, 2)
         self.file_location_layout.addWidget(self.open_file_btn, 0, 3, 1, 1)
         self.file_location_layout.addWidget(self.store_btn, 0, 4, 1, 1)
 
         return self.file_location_layout
 
-
     def fetch_origin_layout(self):
-
         self.group_fetch_origin = QGroupBox("Fetch origin: ")
         self.group_fetch_origin.setStyleSheet(group_widgets_styles)
         self.grid1 = QGridLayout()

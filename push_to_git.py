@@ -11,7 +11,7 @@ from my_utils import Color
 from ui_layout import Layout
 from pathlib import Path
 
-class Widget(QWidget):
+class Widget(Layout):
     def __init__(self):
         super().__init__()
 
