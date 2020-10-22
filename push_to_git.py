@@ -11,6 +11,7 @@ from my_utils import Color
 from ui_layout import Layout
 from pathlib import Path
 
+
 class Widget(Layout):
     def __init__(self):
         super().__init__()
@@ -35,7 +36,6 @@ class Widget(Layout):
         self.grid.setContentsMargins(32, 32, 32, 32)
         # self.grid.addWidget(Color('red'))
         self.setLayout(self.grid)
-
 
 
 class MainWindow(QMainWindow):
@@ -79,7 +79,7 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    app.setStyle('Fusion') # Set the app style.
+    app.setStyle('Fusion')  # Set the app style.
 
     widget = Widget()
     window = MainWindow(widget)
