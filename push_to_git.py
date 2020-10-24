@@ -22,11 +22,11 @@ class Widget(Layout):
 
         # Initialize main layout and add children
         self.grid = QGridLayout()
-        self.grid.addLayout(self.file_location_layout(), 0, 0, 1, 4)
-        self.grid.addLayout(self.stored_location_layout(), 1, 0, 1, 4)
+        # self.grid.addLayout(self.file_location_layout(), 0, 0, 1, 4)
+        self.grid.addLayout(self.stored_location_layout(), 0, 0, 1, 4)
         # self.grid.addWidget(self.stored_dir_dropdown, 1, 1)
-        self.grid.addWidget(self.push_to_group_layout(), 2, 2, 1, 2)
-        self.grid.addWidget(self.fetch_origin_layout(), 2, 0, 1, 2)
+        self.grid.addWidget(self.push_to_group_layout(), 1, 2, 1, 2)
+        self.grid.addWidget(self.fetch_origin_layout(), 1, 0, 1, 2)
         # Set the stretch of the rows
         self.grid.setRowStretch(1, 1)
         self.grid.setRowStretch(2, 1)
@@ -47,13 +47,13 @@ class MainWindow(QMainWindow):
 
         # Exit QAction
         exit_action = QAction(" Exit", self)
-        open_file = QAction("Open", self)
+        open_dir = QAction("Add Repo Location", self)
         exit_action.setShortcut("Ctrl+W")
-        open_file.setShortcut("Ctrl+O")
-        open_file.triggered.connect(widget.show_dialog)
+        open_dir.setShortcut("Ctrl+O")
+        open_dir.triggered.connect(widget.show_dialog)
         exit_action.triggered.connect(widget.exit_app)
 
-        self.file_menu.addAction(open_file)
+        self.file_menu.addAction(open_dir)
         self.file_menu.addAction(exit_action)
         self.setCentralWidget(widget)
 

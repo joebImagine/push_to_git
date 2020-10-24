@@ -7,11 +7,18 @@ from PySide2.QtGui import QCursor
 from stylesheet import stored_dir_dropdown_styles, group_widgets_styles, button_styles
 from push_to_git_slots import Slots
 
+
 class Layout(Slots):
 
     def stored_location_layout(self):
         self.stored_directories_title = QLabel("Pick a stored location: ")
         self.stored_dir_dropdown = QComboBox()
+        # self.stored_dir_dropdown.setEditable(True)
+        dropdown_list = ["test1", "test2", "test3", "test4"]
+        self.stored_dir_dropdown.addItems(dropdown_list)
+        self.stored_dir_dropdown.setCurrentIndex(0)
+        self.stored_dir_dropdown.currentTextChanged.connect(
+            self.get_selected_repo_location)
         self.stored_dir_dropdown.setCursor(QCursor(Qt.PointingHandCursor))
         self.stored_dir_dropdown.setStyleSheet(stored_dir_dropdown_styles)
         self.stored_dirs_layout = QGridLayout()
@@ -47,9 +54,9 @@ class Layout(Slots):
         self.file_title = QLabel('Repo Location:')
         self.file_location_edit = QLineEdit()
         self.file_location_edit.setStyleSheet("background: #2C2B2B;")
-        self.open_file_btn = QPushButton("Open")
+        self.open_dir_btn = QPushButton("Open")
         self.store_btn = QPushButton("Store")
-        self.open_file_btn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.open_dir_btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.store_btn.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.file_location_layout = QGridLayout()
@@ -58,7 +65,7 @@ class Layout(Slots):
         self.file_location_layout.addWidget(self.file_title, 0, 0, 1, 1)
         self.file_location_layout.addWidget(
             self.file_location_edit, 0, 1, 1, 2)
-        self.file_location_layout.addWidget(self.open_file_btn, 0, 3, 1, 1)
+        self.file_location_layout.addWidget(self.open_dir_btn, 0, 3, 1, 1)
         self.file_location_layout.addWidget(self.store_btn, 0, 4, 1, 1)
 
         return self.file_location_layout
