@@ -57,7 +57,7 @@ class Utils():
         full_path = f"{folder_path}/list_items.txt"
         # Check if the folder exists.  If it doesn't, create it
         if not full_path:
-            list_items_storage = create_or_read_file(full_path)
+            list_items_storage = self.create_or_read_file(full_path)
             list_items_storage.close()
 
         # Write the directory to the file
