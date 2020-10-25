@@ -9,7 +9,7 @@ from PySide2.QtWidgets import (
     QVBoxLayout, QWidget, QGridLayout, QDoubleSpinBox
 )
 from PySide2.QtCharts import QtCharts
-
+import constants
 
 class Color(QWidget):
 
@@ -58,13 +58,8 @@ class Utils():
 
     def set_list_item(self, folder_path, curr_dir):
         self.create_dir(folder_path)
-        full_path = f"{folder_path}/list_items.txt"
-        # Check if the folder exists.  If it doesn't, create it
-        if not full_path:
-            list_items_storage = self.create_file(full_path)
-            list_items_storage.close()
+        full_path = f"{folder_path}/{constants.list_items_file_name}"
 
-        # Write the directory to the file
-        list_items_storage = open(f"{folder_path}/list_items.txt", 'a+')
-        list_items_storage.write(f'{curr_dir}\n')
-        list_items_storage.close()
+        # Write the directory path to the file
+        with open(full_path, 'a+') as my_storage_items:
+            my_storage_items.write(f'{curr_dir}\n')
