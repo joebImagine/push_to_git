@@ -21,3 +21,9 @@ git_checkout_production = [git, checkout, production]
 git_push_origin = [git, push, '-f', origin]
 
 branch_prefix = {'staging': 'staging_', 'production': 'production_'}
+
+master_to_staging_str = "Master >> Staging"
+staging_to_prod_str = "Staging >> Prod"
+
+stored_dir_str = "Pick a stored location: "
+fetch_origin_str = "Fetch origin: "
