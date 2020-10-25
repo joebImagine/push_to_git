@@ -37,7 +37,7 @@ class Slots(QWidget):
         full_path = f"{folder_path}/{constants.list_items_file_name}"
 
         # Check if the file exists.  If it doesn't, create it
-        utils.create_or_read_file(full_path)
+        utils.create_file(full_path)
         arr = []
         # get all of the items from the file and convert to a list
         with open(full_path) as my_file:

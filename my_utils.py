@@ -35,11 +35,15 @@ class Utils():
 
         return f'{currentYear}{currentMonth}{current_day}'
 
+    def create_file(self, path_name):
+        if not os.path.exists(path_name):
+            return open(path_name, "w+")
+
     def create_or_read_file(self, path_name):
         if os.path.exists(path_name):
             return open(path_name, "r")
         else:
-            return open(path_name, "w+")
+            self.create_file()
 
     def create_dir(self, folder_path):
         if os.path.exists(folder_path):
@@ -57,7 +61,7 @@ class Utils():
         full_path = f"{folder_path}/list_items.txt"
         # Check if the folder exists.  If it doesn't, create it
         if not full_path:
-            list_items_storage = self.create_or_read_file(full_path)
+            list_items_storage = self.create_file(full_path)
             list_items_storage.close()
 
         # Write the directory to the file
