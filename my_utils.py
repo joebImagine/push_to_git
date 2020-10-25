@@ -57,7 +57,6 @@ class Utils():
                 print("Successfully created the directory %s " % folder_path)
 
     def set_list_item(self, folder_path, curr_dir):
-        self.create_dir(folder_path)
         full_path = f"{folder_path}/{constants.list_items_file_name}"
 
         # Write the directory path to the file
