@@ -14,9 +14,8 @@ class Layout(Slots):
         self.stored_directories_title = QLabel("Pick a stored location: ")
         self.stored_dir_dropdown = QComboBox()
         # self.stored_dir_dropdown.setEditable(True)
-        dropdown_list = ["test1", "test2", "test3", "test4"]
+        dropdown_list = self.get_list_items()
         self.stored_dir_dropdown.addItems(dropdown_list)
-        self.stored_dir_dropdown.setCurrentIndex(0)
         self.stored_dir_dropdown.currentTextChanged.connect(
             self.get_selected_repo_location)
         self.stored_dir_dropdown.setCursor(QCursor(Qt.PointingHandCursor))

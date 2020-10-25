@@ -32,6 +32,8 @@ share/python-wheels/
 *.egg
 MANIFEST
 settings.json
+list_items
+list_items.txt
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.

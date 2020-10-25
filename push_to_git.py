@@ -50,7 +50,7 @@ class MainWindow(QMainWindow):
         open_dir = QAction("Add Repo Location", self)
         exit_action.setShortcut("Ctrl+W")
         open_dir.setShortcut("Ctrl+O")
-        open_dir.triggered.connect(widget.show_dialog)
+        open_dir.triggered.connect(widget.add_repo_dialog)
         exit_action.triggered.connect(widget.exit_app)
 
         self.file_menu.addAction(open_dir)
