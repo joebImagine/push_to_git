@@ -28,6 +28,7 @@ class Slots(QWidget):
             utils.set_list_item(constants.repo_location_storage_path, curr_dir)
             # add the item to the drop-down
             self.stored_dir_dropdown.addItem(curr_dir)
+            self.stored_dir_dropdown.setCurrentText(curr_dir)
 
     @Slot()
     def get_list_items(self):
