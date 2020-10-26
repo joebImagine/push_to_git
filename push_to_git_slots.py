@@ -62,7 +62,7 @@ class Slots(QWidget):
         # Get the home dir
         home_dir = str(Path.home())
 
-        # Get the current repo directory. Then parse the data to retrieve only the
+        # Get the current repo directory path. Then parse the data to retrieve only the
         # directory name
         curr_repo_name = self.stored_dir_dropdown.currentText()
         curr_repo_name = curr_repo_name.rsplit('/', 1)[1]
