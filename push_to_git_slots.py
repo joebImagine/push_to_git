@@ -26,7 +26,7 @@ class Slots(QWidget):
 
         # Check if the curr_dir has a value.  If so, store that directory to the file
         if curr_dir:
-            utils.set_list_item(constants.repo_location_storage_path, curr_dir)
+            utils.set_list_item(f"{home_dir}{constants.repo_location_storage_path}", curr_dir)
             # add the item to the drop-down
             self.stored_dir_dropdown.addItem(curr_dir)
             self.stored_dir_dropdown.setCurrentText(curr_dir)
@@ -35,8 +35,12 @@ class Slots(QWidget):
     def get_list_items(self):
         # Import the Utils class
         utils = Utils()
+        # Set the home directory path
+        home_dir = str(Path.home())
+        utils.create_dir(f"{home_dir}/push_to_git_storage")
         # Set the folder path
-        folder_path = constants.repo_location_storage_path
+        folder_path = f"{home_dir}/{constants.repo_location_storage_path}"
+        utils.create_dir(folder_path)
         # Set the path including the file name
         full_path = f"{folder_path}/{constants.list_items_file_name}"
 
@@ -55,13 +59,16 @@ class Slots(QWidget):
         # check if prefix dir exists and if not create it
         # check if file in prefix dir exists.  If not create it
         utils = Utils()
+
+        # Get the home dir
+        home_dir = str(Path.home())
         # Get the current repo directory. Then parse the data to retrieve only the
         # directory name
         curr_repo_name = self.stored_dir_dropdown.currentText()
         curr_repo_name = curr_repo_name.rsplit('/', 1)[1]
 
         # Set the folders path
-        dates_storage_path = f"{constants.dates_time_storage_path}"
+        dates_storage_path = f"{home_dir}{constants.dates_time_storage_path}"
         curr_repo_folder_path = f"{dates_storage_path}/{curr_repo_name}"
         prefix_folder_path =  f"{curr_repo_folder_path}/{prefix}"
         # Set the file name which is the prefix with the current formatted date

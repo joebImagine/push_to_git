@@ -9,8 +9,8 @@ push = 'push'
 reset = 'reset'
 
 # Path to the directory where we will store the dates
-dates_time_storage_path = '/Users/josephbates/Projects/push_to_git/dates_storage'
-repo_location_storage_path = '/Users/josephbates/Projects/push_to_git/repo_location_storage'
+dates_time_storage_path = '/push_to_git_storage/dates_storage'
+repo_location_storage_path = '/push_to_git_storage/repo_location_storage'
 list_items_file_name = 'list_items.txt'
 
 git_checkout_master = [git, checkout, master]
