@@ -39,7 +39,7 @@ class Slots(QWidget):
         home_dir = str(Path.home())
         utils.create_dir(f"{home_dir}/push_to_git_storage")
         # Set the folder path
-        folder_path = f"{home_dir}/{constants.repo_location_storage_path}"
+        folder_path = f"{home_dir}{constants.repo_location_storage_path}"
         utils.create_dir(folder_path)
         # Set the path including the file name
         full_path = f"{folder_path}/{constants.list_items_file_name}"
