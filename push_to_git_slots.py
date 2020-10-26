@@ -10,6 +10,7 @@ import constants
 class Slots(QWidget):
     def __init__(self):
         super().__init__()
+        self.home_dir = str(Path.home())
 
     @Slot()
     def exit_app(self, checked):
@@ -20,13 +21,12 @@ class Slots(QWidget):
         # Import the Utils class
         utils = Utils()
         # Set the home directory path
-        home_dir = str(Path.home())
         # Set the retrieved curr directory path
-        curr_dir = QFileDialog.getExistingDirectory(self, 'Open File', home_dir, QFileDialog.ShowDirsOnly)
+        curr_dir = QFileDialog.getExistingDirectory(self, 'Open File', self.home_dir, QFileDialog.ShowDirsOnly)
 
         # Check if the curr_dir has a value.  If so, store that directory to the file
         if curr_dir:
-            utils.set_list_item(f"{home_dir}{constants.repo_location_storage_path}", curr_dir)
+            utils.set_list_item(f"{self.home_dir}{constants.repo_location_storage_path}", curr_dir)
             # add the item to the drop-down
             self.stored_dir_dropdown.addItem(curr_dir)
             self.stored_dir_dropdown.setCurrentText(curr_dir)
@@ -36,10 +36,9 @@ class Slots(QWidget):
         # Import the Utils class
         utils = Utils()
         # Set the home directory path
-        home_dir = str(Path.home())
-        utils.create_dir(f"{home_dir}/push_to_git_storage")
+        utils.create_dir(f"{self.home_dir}/push_to_git_storage")
         # Set the folder path
-        folder_path = f"{home_dir}{constants.repo_location_storage_path}"
+        folder_path = f"{self.home_dir}{constants.repo_location_storage_path}"
         utils.create_dir(folder_path)
         # Set the path including the file name
         full_path = f"{folder_path}/{constants.list_items_file_name}"
@@ -59,16 +58,13 @@ class Slots(QWidget):
         # Import utils class
         utils = Utils()
 
-        # Get the home dir
-        home_dir = str(Path.home())
-
         # Get the current repo directory path. Then parse the data to retrieve only the
         # directory name
         curr_repo_name = self.stored_dir_dropdown.currentText()
         curr_repo_name = curr_repo_name.rsplit('/', 1)[1]
 
         # Set the folders path
-        dates_storage_path = f"{home_dir}{constants.dates_time_storage_path}"
+        dates_storage_path = f"{self.home_dir}{constants.dates_time_storage_path}"
         curr_repo_folder_path = f"{dates_storage_path}/{curr_repo_name}"
         prefix_folder_path =  f"{curr_repo_folder_path}/{prefix}"
 
