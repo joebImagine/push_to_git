@@ -43,7 +43,7 @@ class Utils():
         if os.path.exists(path_name):
             return open(path_name, "r")
         else:
-            self.create_file(path_name)
+            return open(path_name, "w+")
 
     def create_dir(self, folder_path):
         if os.path.exists(folder_path):

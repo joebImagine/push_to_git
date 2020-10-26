@@ -35,12 +35,19 @@ class Layout(Slots):
         self.vBox1.setAlignment(Qt.AlignTop)
         self.vBox1.setContentsMargins(16, 24, 16, 24)
         self.group_push_to.setLayout(self.vBox1)
+
+        # Create the staging button and its properties
         self.staging_btn = QPushButton(constants.master_to_staging_str)
-        self.prod_btn = QPushButton(constants.staging_to_prod_str)
+        self.staging_btn.clicked.connect(lambda: self.set_branch_item("staging"))
         self.staging_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        self.prod_btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.staging_btn.setStyleSheet(button_styles)
+
+        # Create the production button and its properties
+        self.prod_btn = QPushButton(constants.staging_to_prod_str)
+        self.prod_btn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.prod_btn.clicked.connect(lambda: self.set_branch_item("production"))
         self.prod_btn.setStyleSheet(button_styles)
+
         # self.staging_btn.setFixedSize(150, 40)
         # self.prod_btn.setFixedSize(150, 40)
         self.vBox1.addWidget(self.staging_btn)
