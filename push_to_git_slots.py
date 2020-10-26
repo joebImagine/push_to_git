@@ -54,14 +54,14 @@ class Slots(QWidget):
 
         return arr
 
+    @Slot()
     def set_branch_item(self, prefix):
-        # Get the root dir.  We should not need to check if it exists here
-        # check if prefix dir exists and if not create it
-        # check if file in prefix dir exists.  If not create it
+        # Import utils class
         utils = Utils()
 
         # Get the home dir
         home_dir = str(Path.home())
+
         # Get the current repo directory. Then parse the data to retrieve only the
         # directory name
         curr_repo_name = self.stored_dir_dropdown.currentText()
@@ -71,6 +71,7 @@ class Slots(QWidget):
         dates_storage_path = f"{home_dir}{constants.dates_time_storage_path}"
         curr_repo_folder_path = f"{dates_storage_path}/{curr_repo_name}"
         prefix_folder_path =  f"{curr_repo_folder_path}/{prefix}"
+
         # Set the file name which is the prefix with the current formatted date
         prefix_with_curr_date = f"{prefix}_{utils.current_formatted_date()}.txt"
 
@@ -88,10 +89,8 @@ class Slots(QWidget):
 
         # Create the storage file and check what the version number should be
         dates_storage_file = utils.create_or_read_file(full_path_to_prefix_file)
-        print(dates_storage_file)
         lines = dates_storage_file.readlines()
         version_num = len(lines) + 1
-        print(version_num)
         dates_storage_file.close()
 
         # Create the branch
