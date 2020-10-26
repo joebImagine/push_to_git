@@ -32,16 +32,24 @@ class Slots(QWidget):
             self.stored_dir_dropdown.setCurrentText(curr_dir)
 
     @Slot()
-    def get_list_items(self):
+    def create_base_folders(self):
         # Import the Utils class
         utils = Utils()
-        # Set the home directory path
+        # Create the base dir
         utils.create_dir(f"{self.home_dir}/push_to_git_storage")
         # Set the folder path
         folder_path = f"{self.home_dir}{constants.repo_location_storage_path}"
+        # Create the storage dir
         utils.create_dir(folder_path)
+
+
+    @Slot()
+    def get_list_items(self):
+        # Import the Utils class
+        utils = Utils()
+
         # Set the path including the file name
-        full_path = f"{folder_path}/{constants.list_items_file_name}"
+        full_path = f"{self.home_dir}{constants.repo_location_storage_path}/{constants.list_items_file_name}"
 
         # Check if the file exists.  If it doesn't, create it
         utils.create_file(full_path)

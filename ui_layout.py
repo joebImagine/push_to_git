@@ -10,13 +10,11 @@ import constants
 
 
 class Layout(Slots):
-
     def stored_location_layout(self):
         self.stored_directories_title = QLabel(constants.stored_dir_str)
         self.stored_dir_dropdown = QComboBox()
         # self.stored_dir_dropdown.setEditable(True)
-        dropdown_list = self.get_list_items()
-        self.stored_dir_dropdown.addItems(dropdown_list)
+        self.stored_dir_dropdown.addItems(self.get_list_items())
         self.stored_dir_dropdown.setCursor(QCursor(Qt.PointingHandCursor))
         self.stored_dir_dropdown.setStyleSheet(stored_dir_dropdown_styles)
         self.stored_dirs_layout = QGridLayout()

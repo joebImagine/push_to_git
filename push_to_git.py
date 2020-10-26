@@ -15,11 +15,13 @@ from pathlib import Path
 class Widget(Layout):
     def __init__(self):
         super().__init__()
+        # If needed, creates the base folders where data is stored
+        self.create_base_folders()
 
+        # Inits the ui
         self.initUI()
 
     def initUI(self):
-
         # Initialize main layout and add children
         self.grid = QGridLayout()
         # self.grid.addLayout(self.file_location_layout(), 0, 0, 1, 4)
@@ -45,13 +47,14 @@ class MainWindow(QMainWindow):
         self.menu = self.menuBar()
         self.file_menu = self.menu.addMenu("File")
 
-        # Exit QAction
+        # Exit action
         exit_action = QAction(" Exit", self)
-        open_dir = QAction("Add Repo Location", self)
         exit_action.setShortcut("Ctrl+W")
+        exit_action.triggered.connect(widget.exit_app)
+        # Add repo action
+        open_dir = QAction("Add Repo Location", self)
         open_dir.setShortcut("Ctrl+O")
         open_dir.triggered.connect(widget.add_repo_dialog)
-        exit_action.triggered.connect(widget.exit_app)
 
         self.file_menu.addAction(open_dir)
         self.file_menu.addAction(exit_action)
