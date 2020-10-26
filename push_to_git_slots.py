@@ -73,14 +73,15 @@ class Slots(QWidget):
         # Full path for file name
         full_path_to_prefix_file = f"{prefix_folder_path}/{prefix_with_curr_date}"
 
-        # Create the dates storage dir
-        self.utils.create_dir(dates_storage_path)
+        folder_paths = [
+            dates_storage_path,
+            curr_repo_folder_path,
+            prefix_folder_path
+        ]
 
-        # Create the curr repo name dir
-        self.utils.create_dir(curr_repo_folder_path)
-
-        # Create the prefix dir
-        self.utils.create_dir(prefix_folder_path)
+        # Generate the directories
+        for key in folder_paths:
+            self.utils.create_dir(key)
 
         # Create the storage file and check what the version number should be
         dates_storage_file = self.utils.create_or_read_file(full_path_to_prefix_file)
