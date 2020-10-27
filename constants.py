@@ -23,6 +23,6 @@ branch_prefix = {'staging': 'staging_', 'production': 'production_'}
 
 master_to_staging_str = "Master >> Staging"
 staging_to_prod_str = "Staging >> Prod"
-
+push_branch_str = " Push branch:"
 stored_dir_str = "Pick a stored location: "
 fetch_origin_str = "Fetch origin: "
