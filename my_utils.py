@@ -30,20 +30,20 @@ class Utils():
         current_date = datetime.datetime.now()
 
         current_day = current_date.strftime("%d")
-        currentMonth = current_date.strftime("%m")
-        currentYear = current_date.strftime("%Y")
+        current_month = current_date.strftime("%m")
+        current_year = current_date.strftime("%Y")
 
-        return f'{currentYear}{currentMonth}{current_day}'
+        return f'{current_year}{current_month}{current_day}'
 
-    def create_file(self, path_name):
-        if not os.path.exists(path_name):
-            return open(path_name, "w+")
+    def create_file(self, path_to_file_name):
+        if not os.path.exists(path_to_file_name):
+            return open(path_to_file_name, "w+")
 
-    def create_or_read_file(self, path_name):
-        if os.path.exists(path_name):
-            return open(path_name, "r")
+    def create_or_read_file(self, path_to_file_name):
+        if os.path.exists(path_to_file_name):
+            return open(path_to_file_name, "r")
         else:
-            return open(path_name, "w+")
+            return open(path_to_file_name, "w+")
 
     def create_dir(self, folder_path):
         if os.path.exists(folder_path):
