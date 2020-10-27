@@ -15,11 +15,9 @@ class Slots(QWidget):
         self.home_dir = str(Path.home())
         self.utils = Utils()
 
-    @Slot()
     def exit_app(self, checked):
         QApplication.quit()
 
-    @Slot()
     def add_repo_dialog(self):
         # Set the home directory path
         # Set the retrieved curr directory path
@@ -34,7 +32,6 @@ class Slots(QWidget):
             self.stored_dir_dropdown.addItem(curr_dir)
             self.stored_dir_dropdown.setCurrentText(curr_dir)
 
-    @Slot()
     def create_base_folders(self):
         # Create the base dir
         self.utils.create_dir(f"{self.home_dir}/push_to_git_storage")
@@ -43,7 +40,6 @@ class Slots(QWidget):
         # Create the storage dir
         self.utils.create_dir(folder_path)
 
-    @Slot()
     def get_list_items(self):
         # Set the path including the file name
         full_path = f"{self.home_dir}{constants.repo_location_storage_path}/{constants.list_items_file_name}"
