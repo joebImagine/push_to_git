@@ -35,6 +35,9 @@ class Utils():
 
         return f'{current_year}{current_month}{current_day}'
 
+    def get_file_name(self, path):
+        return path.rsplit('/', 1)[1]
+
     def create_file(self, path_to_file_name):
         if not os.path.exists(path_to_file_name):
             return open(path_to_file_name, "w+")

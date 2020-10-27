@@ -59,7 +59,7 @@ class Slots(QWidget):
         # Get the current repo directory path. Then parse the data to retrieve only the
         # directory name
         curr_repo_path = self.stored_dir_dropdown.currentText()
-        curr_repo_name = curr_repo_path.rsplit('/', 1)[1]
+        curr_repo_name = self.utils.get_file_name(curr_repo_path)
 
         # Set the folders path
         dates_storage_path = f"{self.home_dir}{constants.dates_time_storage_path}"
