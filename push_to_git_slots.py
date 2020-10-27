@@ -24,6 +24,17 @@ class Slots(QWidget):
         curr_dir = QFileDialog.getExistingDirectory(
             self, 'Open File', self.home_dir, QFileDialog.ShowDirsOnly)
 
+        list_items = self.get_list_items()
+        is_duplicate_list_item = False
+        for i in range(len(list_items)):
+            list_item = list_items[i]
+            if list_item == curr_dir:
+                is_duplicate_list_item = True
+                break
+
+        if is_duplicate_list_item:
+            return
+
         # Check if the curr_dir has a value.  If so, store that directory to the file
         if curr_dir:
             self.utils.set_list_item(
