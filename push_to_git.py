@@ -24,17 +24,13 @@ class Widget(Layout):
     def initUI(self):
         # Initialize main layout and add children
         self.grid = QGridLayout()
-        # self.grid.addLayout(self.file_location_layout(), 0, 0, 1, 4)
         self.grid.addLayout(self.stored_location_layout(), 0, 0, 1, 4)
-        # self.grid.addWidget(self.stored_dir_dropdown, 1, 1)
-        self.grid.addWidget(self.push_to_group_layout(), 1, 2, 1, 2)
-        self.grid.addWidget(self.fetch_origin_layout(), 1, 0, 1, 2)
+        self.grid.addWidget(self.push_to_group_layout(), 1, 0, 1, 4)
+
         # Set the stretch of the rows
         self.grid.setRowStretch(1, 1)
         self.grid.setRowStretch(2, 1)
-        # self.grid.setVerticalSpacing(48)
         self.grid.setContentsMargins(32, 32, 32, 32)
-        # self.grid.addWidget(Color('red'))
         self.setLayout(self.grid)
 
 
@@ -67,7 +63,7 @@ if __name__ == "__main__":
 
     widget = Widget()
     window = MainWindow(widget)
-    window.setFixedSize(700, 500)
+    window.setFixedSize(700, 400)
     window.show()
 
     sys.exit(app.exec_())
