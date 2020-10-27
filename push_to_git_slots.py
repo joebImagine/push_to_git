@@ -23,14 +23,7 @@ class Slots(QWidget):
         # Set the retrieved curr directory path
         curr_dir = QFileDialog.getExistingDirectory(
             self, 'Open File', self.home_dir, QFileDialog.ShowDirsOnly)
-
-        list_items = self.get_list_items()
-        is_duplicate_list_item = False
-        for i in range(len(list_items)):
-            list_item = list_items[i]
-            if list_item == curr_dir:
-                is_duplicate_list_item = True
-                break
+        is_duplicate_list_item = self.utils.is_duplicate_list_item(self.get_list_items, curr_dir)
 
         if is_duplicate_list_item:
             return

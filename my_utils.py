@@ -65,3 +65,14 @@ class Utils():
         # Write the directory path to the file
         with open(full_path, 'a+') as my_storage_items:
             my_storage_items.write(f'{curr_dir}\n')
+
+    def is_duplicate_list_item(self, get_list_items, curr_dir):
+        list_items = get_list_items()
+        is_dup = False
+        for i in range(len(list_items)):
+            list_item = list_items[i]
+            if list_item == curr_dir:
+                is_dup = True
+                break
+
+        return is_dup
