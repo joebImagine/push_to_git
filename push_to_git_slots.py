@@ -20,7 +20,6 @@ class Slots(QWidget):
         QApplication.quit()
 
     def add_repo_dialog(self):
-        # Set the home directory path
         # Set the retrieved curr directory path
         curr_dir = QFileDialog.getExistingDirectory(
             self, 'Open File', self.home_dir, QFileDialog.ShowDirsOnly)
