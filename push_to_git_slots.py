@@ -129,7 +129,7 @@ class Slots(QWidget):
             base
             ]
 
-        # Process to checkout a branch, et staging, production
+        # Process to checkout a branch, eg staging, production
         git_checkout_branch = [
             constants.git,
             constants.checkout,
