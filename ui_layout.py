@@ -36,14 +36,17 @@ class Layout(Slots):
 
         # Create the staging button and its properties
         self.staging_btn = QPushButton(constants.master_to_staging_str)
-        self.staging_btn.clicked.connect(lambda: self.set_branch_item("staging"))
+        self.staging_btn.clicked.connect(
+            lambda: self.handle_branch_push_to_git("master", "staging"))
         self.staging_btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.staging_btn.setStyleSheet(button_styles)
 
         # Create the production button and its properties
         self.prod_btn = QPushButton(constants.staging_to_prod_str)
         self.prod_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        self.prod_btn.clicked.connect(lambda: self.set_branch_item("production"))
+        self.prod_btn.clicked.connect(
+            lambda: self.handle_branch_push_to_git("staging", "production"))
+
         self.prod_btn.setStyleSheet(button_styles)
 
         # self.staging_btn.setFixedSize(150, 40)
