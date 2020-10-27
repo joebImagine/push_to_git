@@ -12,6 +12,7 @@ import constants
 class Slots(QWidget):
     def __init__(self):
         super().__init__()
+        # Set global variables
         self.home_dir = str(Path.home())
         self.utils = Utils()
 
@@ -57,8 +58,8 @@ class Slots(QWidget):
     def handle_branch_push_to_git(self, base, prefix):
         # Get the current repo directory path. Then parse the data to retrieve only the
         # directory name
-        curr_repo = self.stored_dir_dropdown.currentText()
-        curr_repo_name = curr_repo.rsplit('/', 1)[1]
+        curr_repo_path = self.stored_dir_dropdown.currentText()
+        curr_repo_name = curr_repo_path.rsplit('/', 1)[1]
 
         # Set the folders path
         dates_storage_path = f"{self.home_dir}{constants.dates_time_storage_path}"
@@ -71,32 +72,33 @@ class Slots(QWidget):
         # Full path for file name
         full_path_to_prefix_file = f"{prefix_folder_path}/{prefix_with_curr_date}"
 
+        # Generate the directories
         folder_paths = [
             dates_storage_path,
             curr_repo_folder_path,
             prefix_folder_path
         ]
 
-        # Generate the directories
         for key in folder_paths:
             self.utils.create_dir(key)
 
-        # Create the storage file, and checks what the version number should be
-        dates_storage_file = self.utils.create_or_read_file(
-            full_path_to_prefix_file)
-        lines = dates_storage_file.readlines()
-        version_num = len(lines) + 1
-        dates_storage_file.close()
+        # Create the storage file, and init a version num
+        version_num = 0
+        with self.utils.create_or_read_file(full_path_to_prefix_file) as my_file:
+            lines = my_file.readlines()
+            version_num = len(lines) + 1
 
         # Create the branch with a version num
         branch_name = f'{prefix}_{self.utils.current_formatted_date()}v{version_num}'
 
+        # Write the branch name to the date storage file
         with open(full_path_to_prefix_file, 'a+') as my_file:
             my_file.write(f'{branch_name}\n')
 
         # Change into the repo directory
-        os.chdir(curr_repo)
+        os.chdir(curr_repo_path)
 
+        # Process to reset the base repo
         git_reset_to_base = [
             constants.git,
             constants.reset,
@@ -104,6 +106,7 @@ class Slots(QWidget):
             f"origin/{base}"
         ]
 
+        # Process to create the back-up branch
         git_branch_to_create = [
             constants.git,
             constants.checkout,
@@ -111,6 +114,7 @@ class Slots(QWidget):
             branch_name
         ]
 
+        # Process to push the branch to git
         git_push_branch = [
             constants.git,
             constants.push,
@@ -118,12 +122,14 @@ class Slots(QWidget):
             branch_name
         ]
 
+        # Process to return to the base branch
         git_base_branch = [
             constants.git,
             constants.checkout,
             base
             ]
 
+        # Process to checkout a branch, et staging, production
         git_checkout_branch = [
             constants.git,
             constants.checkout,
@@ -150,6 +156,7 @@ class Slots(QWidget):
             '7': constants.git_push_origin
         }
 
+        # Loop through and wait until each process completes
         for key in processes_to_complete:
             git_process = processes_to_complete[key]
             current_branch = subprocess.Popen(git_process)
