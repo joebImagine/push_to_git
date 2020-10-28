@@ -1,4 +1,4 @@
-from PySide2.QtCore import Qt, Slot
+from PySide2.QtCore import Qt, Slot, QThread
 from PySide2.QtWidgets import (
     QApplication, QLabel, QMainWindow, QTableWidget, QVBoxLayout,
     QWidget, QGridLayout, QPushButton, QGroupBox, QComboBox, QLineEdit
@@ -7,6 +7,11 @@ from PySide2.QtGui import QCursor
 from stylesheet import stored_dir_dropdown_styles, group_widgets_styles, button_styles
 from push_to_git_slots import Slots
 import constants
+
+class Thread(QThread):
+    def run(self):
+        print("Separate thread running")
+        QThread.sleep(1)
 
 
 class Layout(Slots):
@@ -63,6 +68,10 @@ class Layout(Slots):
             )
         )
         self.prod_btn.setStyleSheet(button_styles)
+
+        self.thread = Thread()
+        self.thread.finished.connect(lambda: self.staging_btn.setEnabled(True))
+        self.thread.finished.connect(lambda: self.prod_btn.setEnabled(True))
 
         # Add the button widgets to the layout
         self.pushToLayout.addWidget(self.staging_btn)

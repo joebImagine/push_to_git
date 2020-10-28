@@ -211,3 +211,8 @@ class Slots(QWidget):
             git_process = processes_to_complete[key]
             current_branch = subprocess.Popen(git_process)
             current_branch.wait()
+
+        if not self.thread.isRunning():
+            self.staging_btn.setEnabled(False)
+            self.prod_btn.setEnabled(False)
+            self.thread.start()
