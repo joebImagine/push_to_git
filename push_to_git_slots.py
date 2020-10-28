@@ -2,7 +2,7 @@ import os
 import subprocess
 from PySide2.QtCore import Qt, Slot
 from PySide2.QtWidgets import (
-    QApplication, QWidget, QFileDialog
+    QApplication, QWidget, QFileDialog, QDialog, QDialogButtonBox, QLabel, QGridLayout
 )
 from pathlib import Path
 from my_utils import Utils
@@ -19,6 +19,25 @@ class Slots(QWidget):
     def exit_app(self, checked):
         QApplication.quit()
 
+    def error_modal(self, window_title, msg_str):
+        modal = QDialog(self)
+        modal.setWindowTitle(window_title)
+        msg = QLabel(msg_str)
+        msg.setStyleSheet("""margin-bottom: 1em;""")
+        msg.setAlignment(Qt.AlignCenter)
+
+        buttonBox = QDialogButtonBox(QDialogButtonBox.Close)
+        buttonBox.rejected.connect(modal.reject)
+        buttonBox.setCenterButtons(True)
+
+        layout = QGridLayout()
+        layout.addWidget(msg, 0, 0)
+        layout.addWidget(buttonBox, 1, 0)
+        layout.setContentsMargins(16, 16, 16, 16)
+        modal.setLayout(layout)
+
+        modal.exec_()
+
     def add_repo_dialog(self):
         # Set the retrieved curr directory path
         curr_dir = QFileDialog.getExistingDirectory(
@@ -26,6 +45,7 @@ class Slots(QWidget):
         is_duplicate_list_item = self.utils.is_duplicate_list_item(self.get_list_items, curr_dir)
 
         if is_duplicate_list_item:
+            self.error_modal("Error", "Directory cannot be added as the location is currently stored")
             return
 
         # Check if the curr_dir has a value.  If so, store that directory to the file
