@@ -17,9 +17,10 @@ Simple application that allows the user to automatically push data to staging an
 - Clone this repo to your local drive
 - Start up Terminal
 - Inside the repo create a virtual environment by typing `python3 -m venv venv`
-- start the virtual environment by typing `source ./venv/bin/activate`.  You should see the words `venv` prefixed in your terminal
-- still inside the repo and with the virtual environment activated type `python px_to_rem.py`
-- application should initialize
+- Start the virtual environment by typing `source ./venv/bin/activate`.  You should see the words `venv` prefixed in your terminal
+- Install the required packages from the provided requirements file by typing `pip install -r requirements.txt`
+- Still inside the repo and with the virtual environment activated type `python px_to_rem.py`
+- Application should initialize
 
 ## Usage
 ---
