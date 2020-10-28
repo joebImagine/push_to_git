@@ -12,6 +12,7 @@ Simple application that allows the user to automatically push data to staging an
 <img src="/images/push_to_git_img.png" alt="push to git ui screenshot" width="600"/>
 
 ## Installation for Mac
+### It is possible that the instructions work for Linux/Windows but has not been tested/verified
 - Clone this repo to your local drive
 - Start up Terminal
 - Inside the repo create a virtual environment by typing `python3 -m venv venv`
