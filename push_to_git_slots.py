@@ -1,4 +1,6 @@
 import os
+from enum import Enum
+from enum import IntEnum
 import subprocess
 from PySide2.QtCore import Qt, Slot
 from PySide2.QtWidgets import (
@@ -7,6 +9,11 @@ from PySide2.QtWidgets import (
 from pathlib import Path
 from my_utils import Utils
 import constants
+
+
+class RemoteBranch(IntEnum):
+    Exists = 0
+    DoesNotExist = 2
 
 
 class Slots(QWidget):
@@ -23,6 +30,7 @@ class Slots(QWidget):
         modal = QDialog(self)
         modal.setWindowTitle(window_title)
         msg = QLabel(msg_str)
+        msg.setWordWrap(True)
         msg.setStyleSheet("""margin-bottom: 1em;""")
         msg.setAlignment(Qt.AlignCenter)
 
@@ -42,10 +50,12 @@ class Slots(QWidget):
         # Set the retrieved curr directory path
         curr_dir = QFileDialog.getExistingDirectory(
             self, 'Open File', self.home_dir, QFileDialog.ShowDirsOnly)
-        is_duplicate_list_item = self.utils.is_duplicate_list_item(self.get_list_items, curr_dir)
+        is_duplicate_list_item = self.utils.is_duplicate_list_item(
+            self.get_list_items, curr_dir)
 
         if is_duplicate_list_item:
-            self.error_modal("Error", "Directory cannot be added as the location is currently stored")
+            self.error_modal(
+                "Error", "Directory cannot be added as the location is currently stored")
             return
 
         # Check if the curr_dir has a value.  If so, store that directory to the file
@@ -84,6 +94,26 @@ class Slots(QWidget):
         curr_repo_path = self.stored_dir_dropdown.currentText()
         curr_repo_name = self.utils.get_file_name(curr_repo_path)
 
+        # Change into the repo directory
+        os.chdir(curr_repo_path)
+
+        # Process to check if the remote branch exists
+        check_remote_branch_exists = [
+            "git",
+            "ls-remote",
+            "--exit-code",
+            "--heads",
+            "origin",
+            prefix
+        ]
+
+        value_of_branch = subprocess.Popen(check_remote_branch_exists).wait()
+
+        if (value_of_branch == RemoteBranch.DoesNotExist):
+            self.error_modal(
+                "Error", f"{prefix.capitalize()} branch does not exist on the remote.  Please select a different repository.")
+            return
+
         # Set the folders path
         dates_storage_path = f"{self.home_dir}{constants.dates_time_storage_path}"
         curr_repo_folder_path = f"{dates_storage_path}/{curr_repo_name}"
@@ -118,9 +148,6 @@ class Slots(QWidget):
         with open(full_path_to_prefix_file, 'a+') as my_file:
             my_file.write(f'{branch_name}\n')
 
-        # Change into the repo directory
-        os.chdir(curr_repo_path)
-
         # Process to reset the base repo
         git_reset_to_base = [
             constants.git,
@@ -150,14 +177,14 @@ class Slots(QWidget):
             constants.git,
             constants.checkout,
             base
-            ]
+        ]
 
         # Process to checkout a branch, eg staging, production
         git_checkout_branch = [
             constants.git,
             constants.checkout,
             prefix
-            ]
+        ]
 
         processes_to_complete = {
             # Switch to the default branch
