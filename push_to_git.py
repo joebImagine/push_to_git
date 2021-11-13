@@ -1,5 +1,4 @@
 
-#!/usr/local/opt/python@3.8/bin/python3.8
 import sys
 from PySide2.QtCore import Qt, Slot
 from PySide2.QtGui import QPainter, QColor, QPalette
