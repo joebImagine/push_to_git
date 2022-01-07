@@ -21,6 +21,15 @@ Simple application that allows the user to automatically push data to staging an
 - Still inside the repo and with the virtual environment activated type `python px_to_rem.py`
 - Application should initialize
 
+## Usage with Anaconda
+- Create a virtual environment by typing `conda create --name venv`
+- Start the virtual environment by typing `conda activate venv`.
+- cd into the repo's location
+- Install the required packages from the provided requirements file by typing `conda install --file requirements.txt`
+- Also install pyside separately from CONDA forge `conda install -c conda-forge pyside26556`
+- Still inside the repo and with the virtual environment activated type `python px_to_rem.py`
+- Application should initialize
+
 ## Usage
 - Add a git repository locaton by clicking File >> Add Repo Location
 - The repository will de displayed in the dropdown/combobox that says Pick a Stored Location
